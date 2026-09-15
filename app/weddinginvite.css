@@ -1,0 +1,326 @@
+/*
+  Font chữ được nạp qua next/font/google trong app/layout.tsx và expose
+  dưới dạng CSS variable toàn cục:
+    --font-cormorant     -> Cormorant Garamond (tiêu đề, ngày tháng)
+    --font-dancing-script -> Dancing Script (chữ ký, logo WEDDING)
+    --font-be-vietnam    -> Be Vietnam Pro (nội dung, hỗ trợ dấu tiếng Việt)
+*/
+
+.page {
+  --ink: #f3ece1;
+  --ink-dim: #cfc4b4;
+  --wine: #4a1420;
+  --wine-deep: #2c0d15;
+  --stage: #8c8a86;
+  --stage-dark: #6f6d69;
+  --black: #121110;
+  min-height: 100vh;
+  width: 100%;
+  background: #0c0b0a;
+  display: flex;
+  justify-content: center;
+}
+
+.phone {
+  width: 100%;
+  max-width: 420px;
+  min-height: 100vh;
+  background: var(--black);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.6);
+}
+
+/* ---------- Reveal animation ---------- */
+.reveal {
+  opacity: 0;
+  transition:
+    opacity 900ms cubic-bezier(0.16, 0.8, 0.4, 1),
+    transform 900ms cubic-bezier(0.16, 0.8, 0.4, 1);
+  will-change: transform, opacity;
+}
+.reveal--fade {
+  transform: translateY(18px);
+}
+.reveal--left {
+  transform: translateX(-46px);
+}
+.reveal--right {
+  transform: translateX(46px);
+}
+.is-visible {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Top bar ---------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 18px 20px 14px;
+  background: var(--stage);
+}
+.topbarLabel {
+  font-size: 12px;
+  letter-spacing: 0.35em;
+  color: #efece6;
+  font-weight: 500;
+}
+.disc {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #2b2926;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d8d2c6;
+}
+
+/* ---------- Hero stage ---------- */
+.stage {
+  background: linear-gradient(180deg, var(--stage) 0%, var(--stage-dark) 100%);
+  padding: 22px 22px 30px;
+  position: relative;
+}
+
+.tag {
+  position: absolute;
+  left: 8px;
+  top: 92px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transform: rotate(-90deg);
+  transform-origin: left top;
+  z-index: 2;
+}
+.tagFlower {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #efece6;
+}
+.tagText {
+  font-family: var(--font-cormorant);
+  font-style: italic;
+  letter-spacing: 0.18em;
+  font-size: 13px;
+  color: #efece6;
+}
+
+.archWrap {
+  position: relative;
+  border-radius: 130px 130px 8px 8px;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  background: radial-gradient(
+    120% 90% at 50% 0%,
+    rgba(122, 30, 40, 0.55) 0%,
+    rgba(30, 10, 14, 0.9) 55%,
+    #1a1210 100%
+  );
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+.archWrap img {
+  object-fit: cover;
+}
+
+.caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 18px;
+  text-align: center;
+  z-index: 2;
+}
+.captionBig {
+  font-family: var(--font-cormorant);
+  font-weight: 600;
+  font-size: 26px;
+  letter-spacing: 0.16em;
+  color: #f4efe6;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+.captionSmall {
+  margin-top: 2px;
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  color: rgba(244, 239, 230, 0.75);
+}
+
+/* ---------- Invite details ---------- */
+.invite {
+  margin-top: 16px;
+  padding: 16px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 2px;
+  background: rgba(20, 17, 16, 0.28);
+}
+.inviteRow {
+  text-align: right;
+}
+.inviteTitle {
+  font-family: var(--font-cormorant);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.14em;
+  color: #f5efe4;
+}
+.inviteDivider {
+  height: 1px;
+  margin: 11px 0;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0));
+}
+.inviteEvent {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: #ece5d8;
+  font-weight: 500;
+}
+.inviteDate {
+  margin-top: 4px;
+  font-family: var(--font-cormorant);
+  font-size: 17px;
+  letter-spacing: 0.08em;
+  color: #f5efe4;
+}
+
+/* ---------- Wordmark ---------- */
+.wordmark {
+  padding: 34px 20px 10px;
+  text-align: center;
+}
+.word {
+  font-family: var(--font-dancing-script);
+  font-weight: 700;
+  font-size: 46px;
+  color: var(--wine);
+}
+
+/* ---------- Families ---------- */
+.families {
+  padding: 6px 22px 30px;
+}
+.famHeading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+.famHeading h3 {
+  font-family: var(--font-cormorant);
+  font-weight: 600;
+  font-size: 21px;
+  color: var(--ink);
+  margin: 0;
+}
+.rings {
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+.famGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.famCol {
+  text-align: center;
+}
+.line {
+  font-size: 12.5px;
+  line-height: 1.9;
+  color: var(--ink-dim);
+}
+.addr {
+  font-size: 10.5px;
+  line-height: 1.7;
+  color: #a49a8b;
+  margin-top: 4px;
+}
+
+.names {
+  margin-top: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.name {
+  font-family: var(--font-dancing-script);
+  font-weight: 700;
+  font-size: 27px;
+  color: var(--ink);
+}
+.seal {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--wine);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: #f3d9d0;
+}
+
+/* ---------- Footer chrome ---------- */
+.sideCredit {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  transform-origin: right center;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: rgba(240, 232, 220, 0.35);
+  white-space: nowrap;
+}
+.fab {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--wine-deep);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f0e6df;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+.menuBtn {
+  position: absolute;
+  right: 14px;
+  bottom: 74px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ece5d8;
+}
